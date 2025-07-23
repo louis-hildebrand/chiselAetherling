@@ -173,7 +173,7 @@ class Mul(t: STInt) extends MultiIOModule with UnaryInterface with ValidInterfac
     val inner_mul = Module(new BlackBoxMulInt8)
     inner_mul.io.I0 := I.t0b
     inner_mul.io.I1 := I.t1b
-    O := inner_mul.io.O(7,0)
+    O := inner_mul.io.O(7,0).asSInt
     inner_mul.io.clock := clock
   }
   else if (!t.signed && t.width == 16) {
@@ -188,7 +188,7 @@ class Mul(t: STInt) extends MultiIOModule with UnaryInterface with ValidInterfac
     val inner_mul = Module(new BlackBoxMulInt16)
     inner_mul.io.I0 := I.t0b
     inner_mul.io.I1 := I.t1b
-    O := inner_mul.io.O(15,0)
+    O := inner_mul.io.O(15,0).asSInt
     inner_mul.io.clock := clock
   }
   else if (!t.signed && t.width == 32) {
@@ -203,7 +203,7 @@ class Mul(t: STInt) extends MultiIOModule with UnaryInterface with ValidInterfac
     val inner_mul = Module(new BlackBoxMulInt32)
     inner_mul.io.I0 := I.t0b
     inner_mul.io.I1 := I.t1b
-    O := inner_mul.io.O(31,0)
+    O := inner_mul.io.O(31,0).asSInt
     inner_mul.io.clock := clock
   }
   else {
@@ -289,7 +289,7 @@ class BlackBoxMulInt8 extends BlackBox with HasBlackBoxResource {
     val O = Output(SInt(16.W))
     val clock = Input(Clock())
   })
-  addResource("verilogAetherling/mul.v")
+  addResource("/verilogAetherling/mul.v")
 }
 
 class BlackBoxMulUInt16 extends BlackBox with HasBlackBoxResource {
@@ -309,7 +309,7 @@ class BlackBoxMulInt16 extends BlackBox with HasBlackBoxResource {
     val O = Output(SInt(32.W))
     val clock = Input(Clock())
   })
-  addResource("verilogAetherling/mul.v")
+  addResource("/verilogAetherling/mul.v")
 }
 
 class BlackBoxMulUInt32 extends BlackBox with HasBlackBoxResource {
@@ -329,7 +329,7 @@ class BlackBoxMulInt32 extends BlackBox with HasBlackBoxResource {
     val O = Output(SInt(64.W))
     val clock = Input(Clock())
   })
-  addResource("verilogAetherling/mul.v")
+  addResource("/verilogAetherling/mul.v")
 }
 /**
   * Div two Int atoms with a one cycle delay
