@@ -2,6 +2,8 @@
 test_run_dir/*
 src/main/scala/aetherling/modules/Top.*
 Top.*
+/mul.v
+/firrtl_black_box_resource_files.f
 ### XilinxISE template
 # intermediate build files
 *.bgn
