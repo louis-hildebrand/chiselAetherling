@@ -39,6 +39,7 @@ class AbsNoValid(t: STInt) extends MultiIOModule with UnaryInterface {
   * Not of an Bit atom
   */
 class Not() extends MultiIOModule with UnaryInterface with ValidInterface {
+  override val desiredName: String = "LogicalNot"
   override val I = IO(Input(STBit().chiselRepr()))
   override val O = IO(Output(STBit().chiselRepr()))
   O := ~I
@@ -58,6 +59,7 @@ class NotNoValid() extends MultiIOModule with UnaryInterface {
   * And of two Bit atoms
   */
 class And() extends MultiIOModule with UnaryInterface with ValidInterface {
+  override val desiredName: String = "LogicalAnd"
   override val I = IO(Input(STAtomTuple(STBit(), STBit()).chiselRepr()))
   override val O = IO(Output(STBit().chiselRepr()))
   O := I.t0b.asInstanceOf[Bool] && I.t1b.asInstanceOf[Bool]
@@ -77,6 +79,7 @@ class AndNoValid() extends MultiIOModule with UnaryInterface {
   * Or of two Bit atoms
   */
 class Or() extends MultiIOModule with UnaryInterface with ValidInterface {
+  override val desiredName: String = "LogicalOr"
   override val I = IO(Input(STAtomTuple(STBit(), STBit()).chiselRepr()))
   override val O = IO(Output(STBit().chiselRepr()))
   O := I.t0b.asInstanceOf[Bool] || I.t1b.asInstanceOf[Bool]
