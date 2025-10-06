@@ -457,7 +457,7 @@ class LShiftNoValid(t: STInt) extends MultiIOModule with UnaryInterface {
   */
 class Lt(t: STInt) extends MultiIOModule with UnaryInterface with ValidInterface {
   override val I = IO(Input(STAtomTuple(t,t).chiselRepr()))
-  override val O = IO(Output(t.chiselRepr()))
+  override val O = IO(Output(STBit().chiselRepr()))
   if (t.signed) {
     O := I.t0b.asInstanceOf[SInt] < I.t1b.asInstanceOf[SInt]
   }
@@ -473,7 +473,7 @@ class Lt(t: STInt) extends MultiIOModule with UnaryInterface with ValidInterface
   */
 class LtNoValid(t: STInt) extends MultiIOModule with UnaryInterface {
   override val I = IO(Input(STAtomTuple(t,t).chiselRepr()))
-  override val O = IO(Output(t.chiselRepr()))
+  override val O = IO(Output(STBit().chiselRepr()))
   if (t.signed) {
     O := I.t0b.asInstanceOf[SInt] < I.t1b.asInstanceOf[SInt]
   }
@@ -488,7 +488,7 @@ class LtNoValid(t: STInt) extends MultiIOModule with UnaryInterface {
   */
 class Eq(t: STIntOrBit) extends MultiIOModule with UnaryInterface with ValidInterface {
   override val I = IO(Input(STAtomTuple(t,t).chiselRepr()))
-  override val O = IO(Output(t.chiselRepr()))
+  override val O = IO(Output(STBit().chiselRepr()))
   // Ok to cast to UInt as Bool will convert to length 1 vector
   if (t.isInstanceOf[STInt] && t.asInstanceOf[STInt].signed) {
     O := I.t0b.asInstanceOf[SInt] === I.t1b.asInstanceOf[SInt]
@@ -505,7 +505,7 @@ class Eq(t: STIntOrBit) extends MultiIOModule with UnaryInterface with ValidInte
   */
 class EqNoValid(t: STIntOrBit) extends MultiIOModule with UnaryInterface {
   override val I = IO(Input(STAtomTuple(t,t).chiselRepr()))
-  override val O = IO(Output(t.chiselRepr()))
+  override val O = IO(Output(STBit().chiselRepr()))
   // Ok to cast to UInt as Bool will convert to length 1 vector
   if (t.isInstanceOf[STInt] && t.asInstanceOf[STInt].signed) {
     O := I.t0b.asInstanceOf[SInt] < I.t1b.asInstanceOf[SInt]
